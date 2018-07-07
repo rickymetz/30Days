@@ -4,6 +4,8 @@ html, body{
   margin: 0;
   padding: 0;
   width: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 body{
   align-items: center;
@@ -26,24 +28,29 @@ body{
 .key{
   align-items: center;
   border-radius: 3px;
-  border: 2px solid rgba(255, 255, 255, .5);
+  background: rgba(0, 0, 0, .1);
+  border: 2px solid rgba(0, 0, 0, .25);
   box-shadow: 0 .5rem 10px rgba(0, 0, 0, .15);
   display: flex;
   flex-direction: column;
   height: auto;
   justify-content: space-between;
   padding: 1rem;
-  transition: background-color 250ms ease, transform 5ms ease-in;
+  transition: all .075s ease;
   user-select: none;
   width: 5rem;
 }
 .key:hover{
-  background-color: rgba(0, 0, 0, .15);
+  background-color: rgba(0, 0, 0, .25);
   box-shadow: 0 .5rem 10px rgba(0, 0, 0, .25);
   cursor: pointer;
 }
-.key:active{
+.playing, .key:active{
   border: 2px solid CORNSILK;
   transform: scale(.9);
   box-shadow: 0 .25rem 20px rgba(0, 0, 0, .25);
+}
+
+.key kbd{
+  color: white;
 }
