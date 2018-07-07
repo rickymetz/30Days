@@ -8,39 +8,39 @@
 </head>
 <body>
   <div class="keys">
-    <div data-key="65" class="key">
+    <div onClick="playSoundClick(this)" data-key="65" class="key">
       <kbd>A</kbd>
       <span class="sound">clap</span>
     </div>
-    <div data-key="83" class="key">
+    <div onClick="playSoundClick(this)" data-key="83" class="key">
       <kbd>S</kbd>
       <span class="sound">hihat</span>
     </div>
-    <div data-key="68" class="key">
+    <div onClick="playSoundClick(this)" data-key="68" class="key">
       <kbd>D</kbd>
       <span class="sound">kick</span>
     </div>
-    <div data-key="70" class="key">
+    <div onClick="playSoundClick(this)" data-key="70" class="key">
       <kbd>F</kbd>
       <span class="sound">openhat</span>
     </div>
-    <div data-key="71" class="key">
+    <div onClick="playSoundClick(this)" data-key="71" class="key">
       <kbd>G</kbd>
       <span class="sound">boom</span>
     </div>
-    <div data-key="72" class="key">
+    <div onClick="playSoundClick(this)" data-key="72" class="key">
       <kbd>H</kbd>
       <span class="sound">ride</span>
     </div>
-    <div data-key="74" class="key">
+    <div onClick="playSoundClick(this)" data-key="74" class="key">
       <kbd>J</kbd>
       <span class="sound">snare</span>
     </div>
-    <div data-key="75" class="key">
+    <div onClick="playSoundClick(this)" data-key="75" class="key">
       <kbd>K</kbd>
       <span class="sound">tom</span>
     </div>
-    <div data-key="76" class="key">
+    <div onClick="playSoundClick(this)" data-key="76" class="key">
       <kbd>L</kbd>
       <span class="sound">tink</span>
     </div>
@@ -60,6 +60,15 @@
   function playSound(e) {
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
     const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+    if (!audio) return;
+    audio.currentTime = 0;
+    audio.play();
+    key.classList.add('playing');
+  }
+  function playSoundClick(d) {
+    console.log(d);
+    const audio = document.querySelector(`audio[data-key="${d.getAttribute("data-key")}"]`);
+    const key = document.querySelector(`div[data-key="${d.getAttribute("data-key")}"]`);
     if (!audio) return;
     audio.currentTime = 0;
     audio.play();
