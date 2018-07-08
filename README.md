@@ -3,7 +3,7 @@ Repo to house my progress in Wes Bos' [30 Days of Javascript tutorial](https://j
 
 ## Progress
 
-- [x] 1. JavaScript Drum Kit
+- [x] 1. JavaScript Drum Kit <sub>[README](./01-drumkit/README.md)</sub>
 - [ ] 2. CSS + JS Clock 
 - [ ] 3. Playing with CSS Variables and JS 
 - [ ] 4. Array Cardio Day 1
