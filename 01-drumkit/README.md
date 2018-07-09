@@ -9,9 +9,7 @@
 ## Enhancements
 
 - Added on screen click via
-  ```<div onClick="playSoundClick(this)" data-key="76" class="key">```
-
-  and
+  ```<div onClick="playSoundClick(this)" data-key="76" class="key">``` and
 
   ```
   function playSoundClick(d) {
@@ -24,4 +22,4 @@
       key.classList.add('playing');
     }
   ```
-  I would prefer to use the same function
+  I would prefer to use the same function but unsure of how to merge a click and keyboartd event.
