@@ -1,5 +1,7 @@
 # 01 - drumkit
 
+[Demo Link](./index.html)
+
 ## Questions
 
 - How did he know to look for `transitionend`? What do I need to log to see each of those properties
