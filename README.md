@@ -3,17 +3,17 @@ Repo to house my progress in Wes Bos' [30 Days of Javascript tutorial](https://j
 ## Progress
 
 - [x] 1. JavaScript Drum Kit <sub>[Project Link](https://rickymetz.github.io/30Days/01-drumkit/index.html)</sub> <sub>[README](./01-drumkit/README.md)</sub>
-- [ ] 2. CSS + JS Clock 
-- [ ] 3. Playing with CSS Variables and JS 
+- [x] 2. CSS + JS Clock <sub>[Project Link](https://rickymetz.github.io/30Days/02-clock/index.html)</sub> <sub>[README](./02-clock/README.md)</sub>
+- [ ] 3. Playing with CSS Variables and JS
 - [ ] 4. Array Cardio Day 1
-- [ ] 5. Flex Panels Image Gallery 
-- [ ] 6. Ajax Type Ahead 
+- [ ] 5. Flex Panels Image Gallery
+- [ ] 6. Ajax Type Ahead
 - [ ] 7. Array Cardio Day 2
-- [ ] 8. Fun with HTML5 Canvas 
-- [ ] 9. 14 Must Know Dev Tools Tricks 
-- [ ] 10. Hold Shift to Check Multiple Checkboxes 
-- [ ] 11. Custom HTML5 Video Player 
-- [ ] 12. Key Sequence Detection (KONAMI CODE) 
+- [ ] 8. Fun with HTML5 Canvas
+- [ ] 9. 14 Must Know Dev Tools Tricks
+- [ ] 10. Hold Shift to Check Multiple Checkboxes
+- [ ] 11. Custom HTML5 Video Player
+- [ ] 12. Key Sequence Detection (KONAMI CODE)
 - [ ] 13. Slide In on Scroll
 - [ ] 14. Object and Arrays - Reference VS Copy
 - [ ] 15. LocalStorage and Event Delegation
@@ -33,4 +33,3 @@ Repo to house my progress in Wes Bos' [30 Days of Javascript tutorial](https://j
 - [ ] 29. Countdown Clock
 - [ ] 30. Whack A Mole Game
 - [ ] 31. That's All Folks!
-
