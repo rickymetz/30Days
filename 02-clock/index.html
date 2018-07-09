@@ -14,6 +14,11 @@
       <div class="hand second-hand">
         <span></span>
       </div>
+      <div class="calendar">
+        <span class="day">MON</span>
+        <span class="date">01</span>
+        <span class="month">JAN</span>
+      </div>
     </div>
   </div>
 
@@ -22,6 +27,14 @@
     const secondHand = document.querySelector('.second-hand');
     const minHand = document.querySelector('.min-hand');
     const hourHand = document.querySelector('.hour-hand');
+
+    const dayDial = document.querySelector('.day');
+    const dateDial = document.querySelector('.date');
+    const monthDial = document.querySelector('.month');
+
+    const dayNames = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+    const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "DEC"];
+
     function setDate(){
       const now = new Date();
 
@@ -32,14 +45,19 @@
 
       const secondDegrees = time * 6 + 90;
       secondHand.style.transform = `rotate(${secondDegrees}deg)`;
-
       const minDegrees = (time / 60) * 6 + 90;
       minHand.style.transform = `rotate(${minDegrees}deg)`;
-
       const hourDegrees = (hour / 60 / 12 ) * 6 + 90;
       hourHand.style.transform = `rotate(${hourDegrees}deg)`;
 
-      console.log(hour, hourDegrees);
+      const day = dayNames[now.getDay()];
+      dayDial.innerHTML = day;
+      const date = now.getDate();
+      dateDial.innerHTML = date;
+      const month = monthNames[now.getMonth()];
+      monthDial.innerHTML = month;
+
+
     }
     setInterval(setDate, 50);
 
