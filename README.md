@@ -1,4 +1,6 @@
-Repo to house my progress in Wes Bos' [30 Days of Javascript tutorial](https://javascript30.com/)
+A log of my progress in Wes Bos' [30 Days of Javascript tutorial](https://javascript30.com/)
+
+[Project Page](https://rickymetz.github.io/30Days/) | [Github](https://github.com/rickymetz/30Days/)
 
 ## Progress
 
