@@ -1,6 +1,6 @@
 # 02 - Clock
 
-[Demo Link](./index.html)
+[Demo Link](https://rickymetz.github.io/30Days/02-clock/index.html)
 
 ## Questions
 

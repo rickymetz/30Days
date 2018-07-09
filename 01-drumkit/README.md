@@ -1,6 +1,6 @@
 # 01 - drumkit
 
-[Demo Link](./index.html)
+[Demo Link](https://rickymetz.github.io/30Days/01-drumkit/index.html)
 
 ## Questions
 
