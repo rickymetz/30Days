@@ -1,0 +1,116 @@
+
+:root{
+  --spacing: 10px;
+  --blur: 0px;
+  --opacity: 1;
+  --base: tomato;
+  --blend: unset;
+}
+
+img{
+  padding: var(--spacing);
+  background-color: var(--base);
+  filter: blur(var(--blur));
+  mix-blend-mode: var(--blend);
+  opacity: var(--opacity);
+}
+
+.hl{
+  color: var(--base);
+}
+
+/*
+  misc styles, nothing to do with CSS variables
+*/
+
+body{
+  max-height: 100vh;
+}
+
+.container{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  font-family: sans-serif;
+  flex-basis: 0%;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.img-form{
+  display: flex;
+  justify-content: space-between;
+  max-width: 960px;
+  flex: 0 0% 960px;
+  margin-top: 2rem;
+  height: 100%;
+}
+
+.img-wrapper{
+  height: 100%;
+  position: relative;
+  border: 1px solid black;
+  overflow: hidden;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23696969' fill-opacity='0.25'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+.img-wrapper img{
+  max-width: 100%;
+  height: auto;
+  flex: 1 0 100%;
+  position: relative;
+}
+
+.img-wrapper::before{
+  content: '';
+  height: 100%;
+  width: 100%;
+  background-color: var(--base);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.controls {
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 40%;
+  padding-left: 2rem;
+  height: 100%;
+}
+
+select{
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  height: 1.75rem;
+  -webkit-appearance: menulist;
+  box-sizing: border-box;
+  align-items: center;
+  white-space: pre;
+  -webkit-rtl-ordering: logical;
+  background-color: white;
+  cursor: default;
+  text-transform: capitalize;
+}
+
+.form-group{
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 100%;
+  margin-bottom: 1.5rem;
+  height: 100%;
+}
+
+.form-group label{
+  margin-bottom: .5rem;
+}
+
+.form-group input {
+  width: 100%;
+}
