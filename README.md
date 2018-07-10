@@ -6,7 +6,7 @@ A log of my progress in Wes Bos' [30 Days of Javascript tutorial](https://javasc
 
 - [x] 1. JavaScript Drum Kit <sub>[Project Link](https://rickymetz.github.io/30Days/01-drumkit/index.html)</sub> <sub>[README](https://github.com/rickymetz/30Days/blob/master/01-drumkit/README.md)</sub>
 - [x] 2. CSS + JS Clock <sub>[Project Link](https://rickymetz.github.io/30Days/02-clock/index.html)</sub> <sub>[README](https://github.com/rickymetz/30Days/blob/master/02-clock/README.md)</sub>
-- [ ] 3. Playing with CSS Variables and JS <sub>[Project Link](https://rickymetz.github.io/30Days/03-cssvariables/index.html)</sub> <sub>[README](https://github.com/rickymetz/30Days/blob/master/03-cssvariables/README.md)</sub>
+- [x] 3. Playing with CSS Variables and JS <sub>[Project Link](https://rickymetz.github.io/30Days/03-cssvariables/index.html)</sub> <sub>[README](https://github.com/rickymetz/30Days/blob/master/03-cssvariables/README.md)</sub>
 - [ ] 4. Array Cardio Day 1
 - [ ] 5. Flex Panels Image Gallery
 - [ ] 6. Ajax Type Ahead
