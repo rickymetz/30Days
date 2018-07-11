@@ -12,7 +12,7 @@
       <div class="img-wrapper">
         <img src="./img.jpeg">
       </div>
-      <div class="controls">
+      <div id="controls" class="controls">
         <h2>Spotify style Duotone Generator<h2>
         <h3> Powered by <span class='hl'>CSS</span> & <span class='hl'>JS</span></h3>
         <form>
@@ -95,8 +95,11 @@
           </div>
           <div class="form-group inline">
             <input id="toggle-ar" type="checkbox">
-            <label for="toggle-ar">Clip Image to Screen Aspect Ratio</label>
+            <label for="toggle-ar">Clip Image to Screen Aspect Ratio <kbd data-key="65" class="key">A</kbd></label>
           </div>
+          <small onmousedown="playSoundClick(this)" data-key="72" class="form-group key">
+            Press <kbd>H</kbd> to hide the sidebar (useful for screenshots)
+          </small>
         </form>
       </div>
     </div>
@@ -119,9 +122,6 @@
     var element = document.getElementById('img-form');
     var trigger = document.getElementById('toggle-ar'); // or whatever triggers the toggle
 
-    trigger.addEventListener( 'change', function() {
-      element.classList.toggle('maintain-ar'); // or whatever your active class is
-    });
     // File upload
     window.addEventListener('load', function() {
       document.querySelector('input[type="file"]').addEventListener('change', function() {
@@ -133,7 +133,30 @@
       });
     });
 
-function imageIsLoaded(e){ }
+    function imageIsLoaded(e){ }
+
+    // toggle sidebar
+    var controls = document.getElementById('controls');
+    window.addEventListener('keydown', function(e) {
+      console.log(e.key);
+
+      if (e.key === "h"){
+        controls.classList.toggle('hide-sidebar'); // or whatever your active class is
+      }else if (e.key === "a") {
+        element.classList.toggle('maintain-ar');
+        if (trigger.checked === true){
+          trigger.checked = false;
+        } else {
+          trigger.checked = true;
+        }
+      } else {
+        return;
+      }
+    });
+
+    trigger.addEventListener( 'change', function() {
+      element.classList.toggle('maintain-ar'); // or whatever your active class is
+    });
   </script>
 
 </body>
