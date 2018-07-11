@@ -176,6 +176,10 @@ select{
   text-transform: capitalize;
 }
 
+input[type="file" i]{
+  color: #fefefe;
+}
+
 .form-group{
   display: flex;
   flex-direction: column;
