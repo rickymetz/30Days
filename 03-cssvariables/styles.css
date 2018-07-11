@@ -15,6 +15,8 @@ img, object{
   mix-blend-mode: var(--bg-blend);
   /* mix-blend-mode: var(--bg-blend); */
   opacity: var(--opacity);
+  min-width: 100px;
+  min-height: 100px;
 }
 
 .hl{
@@ -96,6 +98,7 @@ small kbd{
   position: relative;
   object-fit: cover;
   margin-bottom: -4px;
+  width: 100%;
 }
 
 .maintain-ar .img-wrapper{
@@ -110,6 +113,7 @@ small kbd{
   height: auto;
   max-width: 100%;
   max-height: calc(100vh - (var(--spacing) * 2));
+  width: unset;
 }
 
 
