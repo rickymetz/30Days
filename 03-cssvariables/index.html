@@ -15,7 +15,7 @@
         </object>
       </div>
       <div id="controls" class="controls">
-        <h2>Spotify style Duotone Generator<h2>
+        <h2>Duotone Generator<h2>
         <h3> Powered by <span class='hl'>CSS</span> & <span class='hl'>JS</span></h3>
         <form>
           <div class="form-group">
@@ -102,6 +102,7 @@
               <button class="premade" data-filter="spotify">Spotify</button>
               <button class="premade" data-filter="vintage">Vintage</button>
               <button class="premade" data-filter="blade-runner">Blade Runner</button>
+              <button class="premade" data-filter="laworder">Law & Order</button>
             </div>
           </div>
           <div class="form-group inline">
@@ -194,19 +195,27 @@
           document.querySelector('#fg-blend [data-index="' + 6 + '"]').selected = true;
           break;
         case 'vintage':
-          document.documentElement.setAttribute("style", "--base: #e9e9d2; --foreground: #514442; --bg-blend: color-burn; --fg-blend: screen; --opacity: 0.7;");
+          document.documentElement.setAttribute("style", "--base: #e9e9d2; --foreground: #514442; --bg-blend: color-burn; --fg-blend: screen; --opacity: 0.8;");
           bg.setAttribute("value", "#e9e9d2");
           fg.setAttribute("value", "#514442");
-          opacity.value = 0.7;
+          opacity.value = 0.8;
           document.querySelector('#bg-blend [data-index="' + 8 + '"]').selected = true;
           document.querySelector('#fg-blend [data-index="' + 3 + '"]').selected = true;
           break;
         case 'blade-runner':
-          document.documentElement.setAttribute("style", "--base: #8c9da4; --foreground: #618cf5; --bg-blend: overlay; --fg-blend: color-burn; --opacity: 1;");
+          document.documentElement.setAttribute("style", "--base: #8c9da4; --foreground: #618cf5; --bg-blend: overlay; --fg-blend: color-burn; --opacity: 0.5;");
           bg.setAttribute("value", "#8c9da4");
           fg.setAttribute("value", "#618cf5");
-          opacity.value = 1;
+          opacity.value = 0.5;
           document.querySelector('#bg-blend [data-index="' + 4 + '"]').selected = true;
+          document.querySelector('#fg-blend [data-index="' + 8 + '"]').selected = true;
+          break;
+        case 'laworder':
+          document.documentElement.setAttribute("style", "--base: #000; --foreground: #c35655; --bg-blend: unset; --fg-blend: color-burn; --opacity: 1;");
+          bg.setAttribute("value", "#000");
+          fg.setAttribute("value", "#c35655");
+          opacity.value = 1;
+          document.querySelector('#bg-blend [data-index="' + 1 + '"]').selected = true;
           document.querySelector('#fg-blend [data-index="' + 8 + '"]').selected = true;
           break;
         default:
