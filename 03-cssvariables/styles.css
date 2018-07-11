@@ -85,7 +85,23 @@ h3{
   flex: 1 0 100%;
   position: relative;
   object-fit: cover;
+  margin-bottom: -4px;
 }
+
+.maintain-ar .img-wrapper{
+  height: auto;
+  flex: unset;
+  display: unset;
+  margin: 0 auto;
+  max-height: 100vh;
+}
+
+.maintain-ar .img-wrapper img{
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - (var(--spacing) * 2));
+}
+
 
 .img-wrapper::before{
   content: '';
@@ -147,6 +163,15 @@ select{
   flex: 1 0 100%;
   margin-bottom: 1.5rem;
   height: 100%;
+}
+
+.form-group.inline{
+  display: block;
+}
+
+.form-group.inline input, .form-group.inline label{
+  display: inline-block;
+  width: auto;
 }
 
 .form-group label{

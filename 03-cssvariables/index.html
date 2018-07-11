@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="container">
-    <div class="img-form">
+    <div id="img-form" class="img-form maintain-ar">
       <div class="img-wrapper">
         <img src="./img.jpeg">
       </div>
@@ -16,6 +16,10 @@
         <h2>Spotify style Duotone Generator<h2>
         <h3> Powered by <span class='hl'>CSS</span> & <span class='hl'>JS</span></h3>
         <form>
+          <div class="form-group">
+            <label for="file">Upload Image:</label>
+            <input id="file" type="file" name="file">
+          </div>
           <div class="form-group">
             <label for="zoom">Zoom</label>
             <input id="zoom" type="range" name="zoom" min="0.25" max="1" value=".9" step="0.01">
@@ -89,6 +93,10 @@
               <option>luminosity</option>
             </select>
           </div>
+          <div class="form-group inline">
+            <input id="toggle-ar" type="checkbox">
+            <label for="toggle-ar">Clip Image to Screen Aspect Ratio</label>
+          </div>
         </form>
       </div>
     </div>
@@ -107,6 +115,25 @@
     inputs.forEach( input => input.addEventListener('mousemove', handleUpdate));
 
     selects.forEach( select => select.addEventListener('change', handleUpdate));
+
+    var element = document.getElementById('img-form');
+    var trigger = document.getElementById('toggle-ar'); // or whatever triggers the toggle
+
+    trigger.addEventListener( 'change', function() {
+      element.classList.toggle('maintain-ar'); // or whatever your active class is
+    });
+    // File upload
+    window.addEventListener('load', function() {
+      document.querySelector('input[type="file"]').addEventListener('change', function() {
+          if (this.files && this.files[0]) {
+              var img = document.querySelector('img');  // $('img')[0]
+              img.src = URL.createObjectURL(this.files[0]); // set src to file url
+              img.onload = imageIsLoaded; // optional onload event listener
+          }
+      });
+    });
+
+function imageIsLoaded(e){ }
   </script>
 
 </body>
