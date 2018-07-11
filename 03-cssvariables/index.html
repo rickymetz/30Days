@@ -8,13 +8,19 @@
 </head>
 <body>
   <div class="container">
-    <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
     <div class="img-form">
       <div class="img-wrapper">
         <img src="./img.jpeg">
       </div>
       <div class="controls">
+        <h2>Spotify style Duotone Generator<h2>
+        <h3> Powered by <span class='hl'>CSS</span> & <span class='hl'>JS</span></h3>
         <form>
+          <div class="form-group">
+            <label for="zoom">Zoom</label>
+            <input id="zoom" type="range" name="zoom" min="0.25" max="1" value=".9" step="0.01">
+          </div>
+
           <div class="form-group">
             <label for="spacing">Spacing:</label>
             <input id="spacing" type="range" name="spacing" min="0" max="200" value="10" data-sizing="px">
@@ -26,20 +32,47 @@
           </div>
 
           <div class="form-group">
-            <label for="opacity">Opacity:</label>
+            <label for="opacity">Image Opacity:</label>
             <input id="opacity" type="range" name="opacity" min="0" max="1" value="1" step="0.01">
           </div>
 
           <div class="form-group">
-            <label for="base">Base Color:</label>
-            <input id="base" type="color" name="base" value="#f94c37">
+            <label for="foreground">Image Color:</label>
+            <input id="foreground" type="color" name="foreground" value="#16006f">
           </div>
 
           <div class="form-group">
-            <label for="base">Image Blend Mode:</label>
-            <select id="blend" name="blend">
+            <label for="fg-bled">Image Blend Mode:</label>
+            <select id="fg-blend" name="fg-blend">
               <option>None (unset)</option>
               <option>multiply</option>
+              <option>screen</option>
+              <option>overlay</option>
+              <option>darken</option>
+              <option selected>lighten</option>
+              <option>color-dodge</option>
+              <option>color-burn</option>
+              <option>hard-light</option>
+              <option>soft-light</option>
+              <option>difference</option>
+              <option>exclusion</option>
+              <option>hue</option>
+              <option>saturation</option>
+              <option>color</option>
+              <option>luminosity</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="base">Background Color:</label>
+            <input id="base" type="color" name="base" value="#f7392b">
+          </div>
+
+          <div class="form-group">
+            <label for="bg-blend">Background Blend Mode:</label>
+            <select id="bg-blend" name="bg-blend">
+              <option>None (unset)</option>
+              <option selected>multiply</option>
               <option>screen</option>
               <option>overlay</option>
               <option>darken</option>
@@ -56,7 +89,6 @@
               <option>luminosity</option>
             </select>
           </div>
-
         </form>
       </div>
     </div>
