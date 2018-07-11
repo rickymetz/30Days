@@ -7,7 +7,7 @@
   --foreground: #16006f;
   --bg-blend: multiply;
   --fg-blend: lighten;
-  --zoom: .9;
+  --zoom: 1;
 }
 
 img, object{
@@ -203,6 +203,21 @@ select{
 
 .form-group.key{
   display: block;
+}
+.form-group .button-group{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+.button-group button{
+  display: inline-flex;
+  background: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  flex: 0 0 auto;
+  margin: 0 10px 10px 0;
 }
 
 

@@ -24,7 +24,7 @@
           </div>
           <div class="form-group">
             <label for="zoom">Zoom</label>
-            <input id="zoom" type="range" name="zoom" min="0.25" max="1" value=".9" step="0.01">
+            <input id="zoom" type="range" name="zoom" min="0.25" max="1" value="1" step="0.01" list="ticks">
           </div>
 
           <div class="form-group">
@@ -50,22 +50,22 @@
           <div class="form-group">
             <label for="fg-bled">Image Blend Mode:</label>
             <select id="fg-blend" name="fg-blend">
-              <option>None (unset)</option>
-              <option>multiply</option>
-              <option>screen</option>
-              <option>overlay</option>
-              <option>darken</option>
-              <option selected>lighten</option>
-              <option>color-dodge</option>
-              <option>color-burn</option>
-              <option>hard-light</option>
-              <option>soft-light</option>
-              <option>difference</option>
-              <option>exclusion</option>
-              <option>hue</option>
-              <option>saturation</option>
-              <option>color</option>
-              <option>luminosity</option>
+              <option data-index="1">None (unset)</option>
+              <option data-index="2">multiply</option>
+              <option data-index="3">screen</option>
+              <option data-index="4">overlay</option>
+              <option data-index="5">darken</option>
+              <option data-index="6" selected>lighten</option>
+              <option data-index="7">color-dodge</option>
+              <option data-index="8">color-burn</option>
+              <option data-index="9">hard-light</option>
+              <option data-index="10">soft-light</option>
+              <option data-index="11">difference</option>
+              <option data-index="12">exclusion</option>
+              <option data-index="13">hue</option>
+              <option data-index="14">saturation</option>
+              <option data-index="15">color</option>
+              <option data-index="16">luminosity</option>
             </select>
           </div>
 
@@ -77,29 +77,38 @@
           <div class="form-group">
             <label for="bg-blend">Background Blend Mode:</label>
             <select id="bg-blend" name="bg-blend">
-              <option>None (unset)</option>
-              <option selected>multiply</option>
-              <option>screen</option>
-              <option>overlay</option>
-              <option>darken</option>
-              <option>lighten</option>
-              <option>color-dodge</option>
-              <option>color-burn</option>
-              <option>hard-light</option>
-              <option>soft-light</option>
-              <option>difference</option>
-              <option>exclusion</option>
-              <option>hue</option>
-              <option>saturation</option>
-              <option>color</option>
-              <option>luminosity</option>
+              <option data-index="1">None (unset)</option>
+              <option data-index="2" selected>multiply</option>
+              <option data-index="3">screen</option>
+              <option data-index="4">overlay</option>
+              <option data-index="5">darken</option>
+              <option data-index="6">lighten</option>
+              <option data-index="7">color-dodge</option>
+              <option data-index="8">color-burn</option>
+              <option data-index="9">hard-light</option>
+              <option data-index="10">soft-light</option>
+              <option data-index="11">difference</option>
+              <option data-index="12">exclusion</option>
+              <option data-index="13">hue</option>
+              <option data-index="14">saturation</option>
+              <option data-index="15">color</option>
+              <option data-index="16">luminosity</option>
             </select>
+          </div>
+          <div class="form-group">
+            <label for="bg-blend">Premade settings:</label>
+            <div class="button-group">
+              <button class="premade" data-filter="default">Default</button>
+              <button class="premade" data-filter="spotify">Spotify</button>
+              <button class="premade" data-filter="vintage">Vintage</button>
+              <button class="premade" data-filter="blade-runner">Blade Runner</button>
+            </div>
           </div>
           <div class="form-group inline">
             <input id="toggle-ar" type="checkbox">
             <label for="toggle-ar">Match Viewport Aspect Ratio <kbd data-key="65" class="key">A</kbd></label>
           </div>
-          <small onmousedown="playSoundClick(this)" data-key="72" class="form-group key">
+          <small data-key="72" class="form-group key">
             Press <kbd>H</kbd> to hide the sidebar (useful for screenshots)
           </small>
         </form>
@@ -140,8 +149,6 @@
     // toggle sidebar
     var controls = document.getElementById('controls');
     window.addEventListener('keydown', function(e) {
-      console.log(e.key);
-
       if (e.key === "h"){
         controls.classList.toggle('hide-sidebar'); // or whatever your active class is
       }else if (e.key === "a") {
@@ -159,6 +166,54 @@
     trigger.addEventListener( 'change', function() {
       element.classList.toggle('maintain-ar'); // or whatever your active class is
     });
+
+    // Premade selections fillings
+    const premades = document.querySelectorAll('.controls .premade'); //Fetch all .premade element
+    const bg = document.getElementById("base");
+    const fg = document.getElementById("foreground");
+    const opacity = document.getElementById("opacity");
+
+    function handleClickUpdate(e) {
+      e.preventDefault();
+      const filter = this.dataset.filter;
+      switch (filter) {
+        case 'default':
+          document.documentElement.setAttribute("style", "--base: #f7392b; --foreground: #16006f; --bg-blend: multiply; --fg-blend: lighten; --opacity: 1;");
+          bg.setAttribute("value", "#f7392b");
+          fg.setAttribute("value", "#16006f");
+          opacity.value = 1;
+          document.querySelector('#bg-blend [data-index="' + 2 + '"]').selected = true;
+          document.querySelector('#fg-blend [data-index="' + 6 + '"]').selected = true;
+          break;
+        case 'spotify':
+          document.documentElement.setAttribute("style", "--base: #08b76c; --foreground: #0a3463; --bg-blend: multiply; --fg-blend: lighten; --opacity: 1;");
+          bg.setAttribute("value", "#08b76c");
+          fg.setAttribute("value", "#0a3463");
+          opacity.value = 1;
+          document.querySelector('#bg-blend [data-index="' + 2 + '"]').selected = true;
+          document.querySelector('#fg-blend [data-index="' + 6 + '"]').selected = true;
+          break;
+        case 'vintage':
+          document.documentElement.setAttribute("style", "--base: #e9e9d2; --foreground: #514442; --bg-blend: color-burn; --fg-blend: screen; --opacity: 0.7;");
+          bg.setAttribute("value", "#e9e9d2");
+          fg.setAttribute("value", "#514442");
+          opacity.value = 0.7;
+          document.querySelector('#bg-blend [data-index="' + 8 + '"]').selected = true;
+          document.querySelector('#fg-blend [data-index="' + 3 + '"]').selected = true;
+          break;
+        case 'blade-runner':
+          document.documentElement.setAttribute("style", "--base: #8c9da4; --foreground: #618cf5; --bg-blend: overlay; --fg-blend: color-burn; --opacity: 1;");
+          bg.setAttribute("value", "#8c9da4");
+          fg.setAttribute("value", "#618cf5");
+          opacity.value = 1;
+          document.querySelector('#bg-blend [data-index="' + 4 + '"]').selected = true;
+          document.querySelector('#fg-blend [data-index="' + 8 + '"]').selected = true;
+          break;
+        default:
+          console.log('Error: No filter found.');
+      }
+    }
+    premades.forEach( premade => premade.addEventListener('click', handleClickUpdate)); //Attach click listener on each premade buttons that triggers function
   </script>
 
 </body>
