@@ -10,7 +10,7 @@
   --zoom: .9;
 }
 
-img{
+img, object{
   filter: grayscale(100%) contrast(1) blur(var(--blur));
   mix-blend-mode: var(--bg-blend);
   /* mix-blend-mode: var(--bg-blend); */
@@ -89,7 +89,7 @@ small kbd{
   display: flex;
   transform: scale(var(--zoom));
 }
-.img-wrapper img{
+.img-wrapper img, .img-wrapper object{
   max-width: 100%;
   height: 100%;
   flex: 1 0 100%;
@@ -106,7 +106,7 @@ small kbd{
   max-height: 100vh;
 }
 
-.maintain-ar .img-wrapper img{
+.maintain-ar .img-wrapper img, .img-wrapper object{
   height: auto;
   max-width: 100%;
   max-height: calc(100vh - (var(--spacing) * 2));
