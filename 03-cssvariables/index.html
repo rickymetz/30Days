@@ -173,46 +173,67 @@
     const bg = document.getElementById("base");
     const fg = document.getElementById("foreground");
     const opacity = document.getElementById("opacity");
+    const root = document.documentElement;
 
     function handleClickUpdate(e) {
       e.preventDefault();
       const filter = this.dataset.filter;
       switch (filter) {
         case 'default':
-          document.documentElement.setAttribute("style", "--base: #f7392b; --foreground: #16006f; --bg-blend: multiply; --fg-blend: lighten; --opacity: 1;");
+          root.style.setProperty("--base", "#f7392b");
+          root.style.setProperty("--foreground", "#16006f");
+          root.style.setProperty("--bg-blend", "multiply");
+          root.style.setProperty("--fg-blend", "lighten");
+          root.style.setProperty("--opacity", "1");
           bg.setAttribute("value", "#f7392b");
           fg.setAttribute("value", "#16006f");
-          opacity.value = 1;
           document.querySelector('#bg-blend [data-index="' + 2 + '"]').selected = true;
           document.querySelector('#fg-blend [data-index="' + 6 + '"]').selected = true;
+          opacity.value = 1;
           break;
         case 'spotify':
-          document.documentElement.setAttribute("style", "--base: #08b76c; --foreground: #0a3463; --bg-blend: multiply; --fg-blend: lighten; --opacity: 1;");
+          root.style.setProperty("--base", "#08b76c");
+          root.style.setProperty("--foreground", "#0a3463");
+          root.style.setProperty("--bg-blend", "multiply");
+          root.style.setProperty("--fg-blend", "lighten");
+          root.style.setProperty("--opacity", "1");
           bg.setAttribute("value", "#08b76c");
           fg.setAttribute("value", "#0a3463");
-          opacity.value = 1;
           document.querySelector('#bg-blend [data-index="' + 2 + '"]').selected = true;
           document.querySelector('#fg-blend [data-index="' + 6 + '"]').selected = true;
+          opacity.value = 1;
           break;
         case 'vintage':
-          document.documentElement.setAttribute("style", "--base: #e9e9d2; --foreground: #514442; --bg-blend: color-burn; --fg-blend: screen; --opacity: 0.8;");
+          root.style.setProperty("--base", "#e9e9d2");
+          root.style.setProperty("--foreground", "#514442");
+          root.style.setProperty("--bg-blend", "color-burn");
+          root.style.setProperty("--fg-blend", "screen");
+          root.style.setProperty("--opacity", "0.8");
           bg.setAttribute("value", "#e9e9d2");
           fg.setAttribute("value", "#514442");
-          opacity.value = 0.8;
           document.querySelector('#bg-blend [data-index="' + 8 + '"]').selected = true;
           document.querySelector('#fg-blend [data-index="' + 3 + '"]').selected = true;
+          opacity.value = 0.8;
           break;
         case 'blade-runner':
-          document.documentElement.setAttribute("style", "--base: #8c9da4; --foreground: #618cf5; --bg-blend: overlay; --fg-blend: color-burn; --opacity: 0.5;");
+          root.style.setProperty("--base", "#8c9da4");
+          root.style.setProperty("--foreground", "#618cf5");
+          root.style.setProperty("--bg-blend", "overlay");
+          root.style.setProperty("--fg-blend", "color-burn");
+          root.style.setProperty("--opacity", "0.5");
           bg.setAttribute("value", "#8c9da4");
           fg.setAttribute("value", "#618cf5");
-          opacity.value = 0.5;
           document.querySelector('#bg-blend [data-index="' + 4 + '"]').selected = true;
           document.querySelector('#fg-blend [data-index="' + 8 + '"]').selected = true;
+          opacity.value = 0.5;
           break;
         case 'laworder':
-          document.documentElement.setAttribute("style", "--base: #000; --foreground: #c35655; --bg-blend: unset; --fg-blend: color-burn; --opacity: 1;");
-          bg.setAttribute("value", "#000");
+          root.style.setProperty("--base", "#000000");
+          root.style.setProperty("--foreground", "#c35655");
+          root.style.setProperty("--bg-blend", "unset");
+          root.style.setProperty("--fg-blend", "color-burn");
+          root.style.setProperty("--opacity", "1");
+          bg.setAttribute("value", "#000000");
           fg.setAttribute("value", "#c35655");
           opacity.value = 1;
           document.querySelector('#bg-blend [data-index="' + 1 + '"]').selected = true;
