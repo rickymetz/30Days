@@ -10,17 +10,22 @@
   <div class="container">
     <div id="img-form" class="img-form maintain-ar">
       <div class="img-wrapper">
-        <object data="https://source.unsplash.com/random" type="image/png">
+        <object id="img-src" data="https://source.unsplash.com/random" type="image/png">
           <img src="./img.jpeg">
         </object>
       </div>
       <div id="controls" class="controls">
         <h2>Duotone Generator<h2>
         <h3> Powered by <span class='hl'>CSS</span> & <span class='hl'>JS</span></h3>
-        <form>
+        <div>
           <div class="form-group">
             <label for="file">Upload Image:</label>
             <input id="file" type="file" name="file">
+          </div>
+          <div class="form-group">
+            <div class="button-group">
+              <button id="new-img-btn" data-filter="default">Get random new image</button>
+            </div>
           </div>
           <div class="form-group">
             <label for="zoom">Zoom</label>
@@ -112,7 +117,7 @@
           <small data-key="72" class="form-group key">
             Press <kbd>H</kbd> to hide the sidebar (useful for screenshots)
           </small>
-        </form>
+        </div>
       </div>
     </div>
   </div>
@@ -244,6 +249,21 @@
       }
     }
     premades.forEach( premade => premade.addEventListener('click', handleClickUpdate)); //Attach click listener on each premade buttons that triggers function
+
+    // Get new random img
+    const img_url = "https://source.unsplash.com/random/";
+    const img_element = document.getElementById('img-src');
+    const new_img_btn = document.getElementById('new-img-btn');
+
+    new_img_btn.addEventListener('click', function(){
+
+      img_element.setAttribute("data", img_url + (Math.floor(Math.random()*(1000-300+1)+300)));
+      // if (img_element.data == img_url) {
+      //   img_element.setAttribute("data", img_url + "?");
+      // } else {
+      //   img_element.setAttribute("data", img_url);
+      // }
+    });
   </script>
 
 </body>
