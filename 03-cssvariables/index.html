@@ -25,6 +25,7 @@
           <div class="form-group">
             <div class="button-group">
               <button id="new-img-btn" data-filter="default">Get random new image</button>
+              <small>Your settings will only reset on page refresh</small>
             </div>
           </div>
           <div class="form-group">
@@ -108,6 +109,7 @@
               <button class="premade" data-filter="vintage">Vintage</button>
               <button class="premade" data-filter="blade-runner">Blade Runner</button>
               <button class="premade" data-filter="laworder">Law & Order</button>
+              <button class="premade" data-filter="random">Randomize</button>
             </div>
           </div>
           <div class="form-group inline">
@@ -143,8 +145,8 @@
     window.addEventListener('load', function() {
       document.querySelector('input[type="file"]').addEventListener('change', function() {
           if (this.files && this.files[0]) {
-              var img = document.querySelector('img');  // $('img')[0]
-              img.src = URL.createObjectURL(this.files[0]); // set src to file url
+              var img = document.getElementById('img-src');
+              img.data = URL.createObjectURL(this.files[0]); // set object data to file url
               img.onload = imageIsLoaded; // optional onload event listener
           }
       });
@@ -244,6 +246,44 @@
           document.querySelector('#bg-blend [data-index="' + 1 + '"]').selected = true;
           document.querySelector('#fg-blend [data-index="' + 8 + '"]').selected = true;
           break;
+        case 'random':
+          const blendArray = [
+            "unset",
+            "multiply",
+            "screen",
+            "overlay",
+            "darken",
+            "lighten",
+            "color-dodge",
+            "color-burn",
+            "hard-light",
+            "soft-light",
+            "difference",
+            "exclusion",
+            "hue",
+            "saturation",
+            "color",
+            "luminosity"
+          ];
+          const random_bg = "#" + Math.floor(Math.random()*16777215).toString(16);
+          const random_fg = "#" + Math.floor(Math.random()*16777215).toString(16);
+          const random_opacity = Math.random() * (1 - .5) + .5;
+          const random_bg_blend = blendArray[Math.floor(Math.random()*blendArray.length)];
+          const random_fg_blend = blendArray[Math.floor(Math.random()*blendArray.length)];
+          console.log(random_bg_blend);
+          console.log(random_fg_blend);
+
+          root.style.setProperty("--base", random_bg);
+          root.style.setProperty("--foreground", random_fg);
+          root.style.setProperty("--bg-blend", random_bg_blend);
+          root.style.setProperty("--fg-blend", random_fg_blend);
+          root.style.setProperty("--opacity", random_opacity);
+          bg.setAttribute("value", random_bg);
+          fg.setAttribute("value", random_fg);
+          opacity.value = random_opacity;
+          document.querySelector('#bg-blend [data-index="' + (blendArray.indexOf(random_bg_blend) + 1) + '"]').selected = true;
+          document.querySelector('#fg-blend [data-index="' + (blendArray.indexOf(random_fg_blend) + 1) + '"]').selected = true;
+          break;
         default:
           console.log('Error: No filter found.');
       }
@@ -256,13 +296,8 @@
     const new_img_btn = document.getElementById('new-img-btn');
 
     new_img_btn.addEventListener('click', function(){
-
-      img_element.setAttribute("data", img_url + (Math.floor(Math.random()*(1000-300+1)+300)));
-      // if (img_element.data == img_url) {
-      //   img_element.setAttribute("data", img_url + "?");
-      // } else {
-      //   img_element.setAttribute("data", img_url);
-      // }
+      img_element.setAttribute("data", img_url + (Math.floor(Math.random()*(1000-300+1)+300))); //add a random width param between 1000px and 300px
+      document.querySelector('input[type="file"]').value = ""; //reset file upload if user has previous uploaded an image before hitting random
     });
   </script>
 
