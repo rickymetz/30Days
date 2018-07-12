@@ -56,22 +56,22 @@
           <div class="form-group">
             <label for="fg-bled">Image Blend Mode:</label>
             <select id="fg-blend" name="fg-blend">
-              <option data-index="1">None (unset)</option>
-              <option data-index="2">multiply</option>
-              <option data-index="3">screen</option>
-              <option data-index="4">overlay</option>
-              <option data-index="5">darken</option>
-              <option data-index="6" selected>lighten</option>
-              <option data-index="7">color-dodge</option>
-              <option data-index="8">color-burn</option>
-              <option data-index="9">hard-light</option>
-              <option data-index="10">soft-light</option>
-              <option data-index="11">difference</option>
-              <option data-index="12">exclusion</option>
-              <option data-index="13">hue</option>
-              <option data-index="14">saturation</option>
-              <option data-index="15">color</option>
-              <option data-index="16">luminosity</option>
+              <option data-filter="unset">unset</option>
+              <option data-filter="multiply">multiply</option>
+              <option data-filter="screen">screen</option>
+              <option data-filter="overlay">overlay</option>
+              <option data-filter="darken">darken</option>
+              <option data-filter="lighten" selected>lighten</option>
+              <option data-filter="color-dodge">color-dodge</option>
+              <option data-filter="color-burn">color-burn</option>
+              <option data-filter="hard-light">hard-light</option>
+              <option data-filter="soft-light">soft-light</option>
+              <option data-filter="difference">difference</option>
+              <option data-filter="exclusion">exclusion</option>
+              <option data-filter="hue">hue</option>
+              <option data-filter="saturation">saturation</option>
+              <option data-filter="color">color</option>
+              <option data-filter="luminosity">luminosity</option>
             </select>
           </div>
 
@@ -83,22 +83,22 @@
           <div class="form-group">
             <label for="bg-blend">Background Blend Mode:</label>
             <select id="bg-blend" name="bg-blend">
-              <option data-index="1">None (unset)</option>
-              <option data-index="2" selected>multiply</option>
-              <option data-index="3">screen</option>
-              <option data-index="4">overlay</option>
-              <option data-index="5">darken</option>
-              <option data-index="6">lighten</option>
-              <option data-index="7">color-dodge</option>
-              <option data-index="8">color-burn</option>
-              <option data-index="9">hard-light</option>
-              <option data-index="10">soft-light</option>
-              <option data-index="11">difference</option>
-              <option data-index="12">exclusion</option>
-              <option data-index="13">hue</option>
-              <option data-index="14">saturation</option>
-              <option data-index="15">color</option>
-              <option data-index="16">luminosity</option>
+              <option data-filter="unset">unset</option>
+              <option data-filter="multiply selected">multiply</option>
+              <option data-filter="screen">screen</option>
+              <option data-filter="overlay">overlay</option>
+              <option data-filter="darken">darken</option>
+              <option data-filter="lighten">lighten</option>
+              <option data-filter="color-dodge">color-dodge</option>
+              <option data-filter="color-burn">color-burn</option>
+              <option data-filter="hard-light">hard-light</option>
+              <option data-filter="soft-light">soft-light</option>
+              <option data-filter="difference">difference</option>
+              <option data-filter="exclusion">exclusion</option>
+              <option data-filter="hue">hue</option>
+              <option data-filter="saturation">saturation</option>
+              <option data-filter="color">color</option>
+              <option data-filter="luminosity">luminosity</option>
             </select>
           </div>
           <div class="form-group">
@@ -109,6 +109,7 @@
               <button class="premade" data-filter="vintage">Vintage</button>
               <button class="premade" data-filter="blade-runner">Blade Runner</button>
               <button class="premade" data-filter="laworder">Law & Order</button>
+              <button class="premade" data-filter="moody">Moody</button>
               <button class="premade" data-filter="random">Randomize</button>
             </div>
           </div>
@@ -181,7 +182,30 @@
     const fg = document.getElementById("foreground");
     const opacity = document.getElementById("opacity");
     const root = document.documentElement;
-
+    const blendArray = [
+      "unset",
+      "multiply",
+      "screen",
+      "overlay",
+      "darken",
+      "lighten",
+      "color-dodge",
+      "color-burn",
+      "hard-light",
+      "soft-light",
+      "difference",
+      "exclusion",
+      "hue",
+      "saturation",
+      "color",
+      "luminosity"
+    ];
+    const random_bg = "#" + Math.floor(Math.random()*16777215).toString(16);
+    const random_fg = "#" + Math.floor(Math.random()*16777215).toString(16);
+    const random_opacity = Math.random() * (1 - .5) + .5;
+    const random_bg_blend = blendArray[Math.floor(Math.random()*blendArray.length)];
+    const random_fg_blend = blendArray[Math.floor(Math.random()*blendArray.length)];
+    
     function handleClickUpdate(e) {
       e.preventDefault();
       const filter = this.dataset.filter;
@@ -246,33 +270,24 @@
           document.querySelector('#bg-blend [data-index="' + 1 + '"]').selected = true;
           document.querySelector('#fg-blend [data-index="' + 8 + '"]').selected = true;
           break;
+        case 'moody':
+          root.style.setProperty("--base", "#000000");
+          root.style.setProperty("--foreground", "#1d1d37");
+          root.style.setProperty("--bg-blend", "screen");
+          root.style.setProperty("--fg-blend", "exclusion");
+          root.style.setProperty("--opacity", "0.7");
+          bg.setAttribute("value", "#000000");
+          fg.setAttribute("value", "#1d1d37");
+          opacity.value = 0.7;
+          document.querySelector('#bg-blend [data-index="' + 3 + '"]').selected = true;
+          document.querySelector('#fg-blend [data-index="' + 12 + '"]').selected = true;
+          break;
         case 'random':
-          const blendArray = [
-            "unset",
-            "multiply",
-            "screen",
-            "overlay",
-            "darken",
-            "lighten",
-            "color-dodge",
-            "color-burn",
-            "hard-light",
-            "soft-light",
-            "difference",
-            "exclusion",
-            "hue",
-            "saturation",
-            "color",
-            "luminosity"
-          ];
           const random_bg = "#" + Math.floor(Math.random()*16777215).toString(16);
           const random_fg = "#" + Math.floor(Math.random()*16777215).toString(16);
           const random_opacity = Math.random() * (1 - .5) + .5;
           const random_bg_blend = blendArray[Math.floor(Math.random()*blendArray.length)];
           const random_fg_blend = blendArray[Math.floor(Math.random()*blendArray.length)];
-          console.log(random_bg_blend);
-          console.log(random_fg_blend);
-
           root.style.setProperty("--base", random_bg);
           root.style.setProperty("--foreground", random_fg);
           root.style.setProperty("--bg-blend", random_bg_blend);
@@ -281,8 +296,8 @@
           bg.setAttribute("value", random_bg);
           fg.setAttribute("value", random_fg);
           opacity.value = random_opacity;
-          document.querySelector('#bg-blend [data-index="' + (blendArray.indexOf(random_bg_blend) + 1) + '"]').selected = true;
-          document.querySelector('#fg-blend [data-index="' + (blendArray.indexOf(random_fg_blend) + 1) + '"]').selected = true;
+          document.querySelector('#bg-blend [data-filter="' + random_bg_blend + '"]').selected = true;
+          document.querySelector('#fg-blend [data-filter="' + random_fg_blend + '"]').selected = true;
           break;
         default:
           console.log('Error: No filter found.');
