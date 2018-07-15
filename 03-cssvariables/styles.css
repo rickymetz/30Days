@@ -292,7 +292,7 @@ input[type="file" i]{
 .code-output {
   width: 100%;
   max-width: 960px;
-  padding: 0 1rem 0;
+  padding: 0 1rem 1rem;
   border-radius: 10px;
   background: #202020;
   overflow-y: scroll;
@@ -333,7 +333,7 @@ input[type="file" i]{
 }
 
 pre{
-  margin-top: 0 !important;
+  margin: 0 !important;
 }
 
 pre>code{
