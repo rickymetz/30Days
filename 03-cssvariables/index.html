@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <title>Scoped CSS Variables and JS</title>
   <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+  <script src="./js/prism.js"></script>
+  <link rel="stylesheet" href="./prism.css">
   <link rel="stylesheet" href="./styles.css">
 </head>
-<body>
+<body class="hide-code">
   <div class="container">
     <div id="img-form" class="img-form maintain-ar">
       <div class="img-wrapper">
@@ -24,8 +26,14 @@
           </div>
           <div class="form-group">
             <div class="button-group">
-              <button id="new-img-btn" data-filter="default">Get random new image</button>
+              <button id="new-img-btn">Get random new image</button>
               <small>Your settings will only reset on page refresh</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="button-group">
+              <button id="get-css">Geneate HTML+CSS</button>
+              <small>Will open modal</small>
             </div>
           </div>
           <div class="form-group">
@@ -124,7 +132,84 @@
       </div>
     </div>
   </div>
+  <div class="code-modal">
+    <div class="code-output">
+      <div class="code-header">
+        <h2>HTML + CSS output</h2>
+        <button id="hide-modal-screen" class="button">Close Modal</button>
+      </div>
+<pre>
+<code class="language-html">&lt;!-- Styles. Can be included in an external stylesheet  --&gt;
 
+&lt;style&gt;
+
+  /* CSS variables. Not needed for the effect to work. */</code><code class="language-css">
+  :root {</code>
+   <code class="language-css">--base:</code>              <code class="highlight"><span id="var-base">#f7392b</span>;</code>
+   <code class="language-css">--bg-blend:</code>          <code class="highlight"><span id="var-bg-blend">multiply</span>;</code>
+   <code class="language-css">--blur:</code>              <code class="highlight"><span id="var-blur">0px</span>;</code>
+   <code class="language-css">--fg-blend:</code>          <code class="highlight"><span id="var-fg-blend">lighten</span>;</code>
+   <code class="language-css">--foreground:</code>        <code class="highlight"><span id="var-foreground">#16006f</span>;</code>
+   <code class="language-css">--opacity:</code>           <code class="highlight"><span id="var-opacity">1</span>;</code>
+   <code class="language-css">--spacing:</code>           <code class="highlight"><span id="var-spacing">10px</span>;</code>
+<code class="language-css">  }
+
+  .img-wrapper {
+    background-color:    var(--base);
+    display:             flex;
+    flex:                1 1 100%;
+    height:              100%;
+    overflow:            hidden;
+    padding:             var(--spacing);
+    position:            relative;
+  }
+
+  .img-wrapper img,
+  .img-wrapper object {
+    filter:              grayscale(100%) contrast(1) blur(var(--blur));
+    flex:                1 0 100%;
+    height:              100%;
+    max-width:           100%;
+    mix-blend-mode:      var(--bg-blend);
+    object-fit:          cover;
+    opacity:             var(--opacity);
+    position:            relative;
+    width:               100%;
+  }
+
+  .img-wrapper::before {
+    background-color:    var(--foreground);
+    bottom:              0;
+    content:             '';
+    height:              100%;
+    left:                0;
+    mix-blend-mode:      var(--fg-blend);
+    position:            absolute;
+    right:               0;
+    top:                 0;
+    width:               100%;
+    z-index:             1;
+  }
+</code>
+<code class="language-html">
+&lt;/style&gt;
+
+&lt;!-- HTML --&gt;
+
+&lt;!-- You should think of `img-wrapper` as the image itself. This element is what you should target for sizing/styling. --&gt;
+&lt;div class=&quot;img-wrapper&quot;&gt;
+  &lt;!-- This `object` is what contains your image file. You can remove this and replace with a standard `&lt;img/&gt;` tag if you don't want a fallback image. --&gt;
+  &lt;object id=&quot;img-src&quot; data=&quot;./path/to/your/img.png&quot; type=&quot;image/png&quot;&gt;
+    &lt;!-- This `img` is your backup image.You can remove this if you don't want an image fallback --&gt;
+    &lt;img src=&quot;./path/to/backup/img.jpeg&quot;&gt;
+  &lt;/object&gt;
+  &lt;!-- The `::before` pseudo-element will apear here in the Broweser(DOM) and in web-inspector. --&gt;
+&lt;/div&gt;</code>
+</pre>
+
+    </div>
+    <div id="modal-screen" class="modal-screen"></div>
+  </div>
   <script>
     const inputs = document.querySelectorAll('.controls input');
     const selects = document.querySelectorAll('.controls select');
@@ -132,6 +217,7 @@
     function handleUpdate() {
       const suffix = this.dataset.sizing || '';
       document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+      document.getElementById(`var-${this.name}`).innerHTML = `${this.value + suffix}`;
     }
 
     inputs.forEach( input => input.addEventListener('change', handleUpdate));
@@ -205,7 +291,7 @@
     const random_opacity = Math.random() * (1 - .5) + .5;
     const random_bg_blend = blendArray[Math.floor(Math.random()*blendArray.length)];
     const random_fg_blend = blendArray[Math.floor(Math.random()*blendArray.length)];
-    
+
     function handleClickUpdate(e) {
       e.preventDefault();
       const filter = this.dataset.filter;
@@ -216,6 +302,11 @@
           root.style.setProperty("--bg-blend", "multiply");
           root.style.setProperty("--fg-blend", "lighten");
           root.style.setProperty("--opacity", "1");
+          document.getElementById("var-base").innerHTML = "#f7392b";
+          document.getElementById("var-foreground").innerHTML = "#16006f";
+          document.getElementById("var-bg-blend").innerHTML = "multiply";
+          document.getElementById("var-bg-blend").innerHTML = "lighten";
+          document.getElementById("var-opacity").innerHTML = "1";
           bg.setAttribute("value", "#f7392b");
           fg.setAttribute("value", "#16006f");
           document.querySelector('#bg-blend [data-index="' + 2 + '"]').selected = true;
@@ -228,6 +319,11 @@
           root.style.setProperty("--bg-blend", "multiply");
           root.style.setProperty("--fg-blend", "lighten");
           root.style.setProperty("--opacity", "1");
+          document.getElementById("var-base").innerHTML = "#08b76c";
+          document.getElementById("var-foreground").innerHTML = "#0a3463";
+          document.getElementById("var-bg-blend").innerHTML = "multiply";
+          document.getElementById("var-bg-blend").innerHTML = "lighten";
+          document.getElementById("var-opacity").innerHTML = "1";
           bg.setAttribute("value", "#08b76c");
           fg.setAttribute("value", "#0a3463");
           document.querySelector('#bg-blend [data-index="' + 2 + '"]').selected = true;
@@ -240,6 +336,11 @@
           root.style.setProperty("--bg-blend", "color-burn");
           root.style.setProperty("--fg-blend", "screen");
           root.style.setProperty("--opacity", "0.8");
+          document.getElementById("var-base").innerHTML = "#e9e9d2";
+          document.getElementById("var-foreground").innerHTML = "#514442";
+          document.getElementById("var-bg-blend").innerHTML = "color-burn";
+          document.getElementById("var-bg-blend").innerHTML = "screen";
+          document.getElementById("var-opacity").innerHTML = "0.8";
           bg.setAttribute("value", "#e9e9d2");
           fg.setAttribute("value", "#514442");
           document.querySelector('#bg-blend [data-index="' + 8 + '"]').selected = true;
@@ -252,6 +353,11 @@
           root.style.setProperty("--bg-blend", "overlay");
           root.style.setProperty("--fg-blend", "color-burn");
           root.style.setProperty("--opacity", "0.5");
+          document.getElementById("var-base").innerHTML = "#8c9da4";
+          document.getElementById("var-foreground").innerHTML = "#618cf5";
+          document.getElementById("var-bg-blend").innerHTML = "overlay";
+          document.getElementById("var-bg-blend").innerHTML = "color-burn";
+          document.getElementById("var-opacity").innerHTML = "0.5";
           bg.setAttribute("value", "#8c9da4");
           fg.setAttribute("value", "#618cf5");
           document.querySelector('#bg-blend [data-index="' + 4 + '"]').selected = true;
@@ -264,6 +370,11 @@
           root.style.setProperty("--bg-blend", "unset");
           root.style.setProperty("--fg-blend", "color-burn");
           root.style.setProperty("--opacity", "1");
+          document.getElementById("var-base").innerHTML = "#000000";
+          document.getElementById("var-foreground").innerHTML = "#c35655";
+          document.getElementById("var-bg-blend").innerHTML = "unset";
+          document.getElementById("var-bg-blend").innerHTML = "screen";
+          document.getElementById("var-opacity").innerHTML = "1";
           bg.setAttribute("value", "#000000");
           fg.setAttribute("value", "#c35655");
           opacity.value = 1;
@@ -276,6 +387,11 @@
           root.style.setProperty("--bg-blend", "screen");
           root.style.setProperty("--fg-blend", "exclusion");
           root.style.setProperty("--opacity", "0.7");
+          document.getElementById("var-base").innerHTML = "#000000";
+          document.getElementById("var-foreground").innerHTML = "#1d1d37";
+          document.getElementById("var-bg-blend").innerHTML = "screen";
+          document.getElementById("var-bg-blend").innerHTML = "exclusion";
+          document.getElementById("var-opacity").innerHTML = "0.7";
           bg.setAttribute("value", "#000000");
           fg.setAttribute("value", "#1d1d37");
           opacity.value = 0.7;
@@ -293,6 +409,11 @@
           root.style.setProperty("--bg-blend", random_bg_blend);
           root.style.setProperty("--fg-blend", random_fg_blend);
           root.style.setProperty("--opacity", random_opacity);
+          document.getElementById("var-base").innerHTML = `${random_bg}`;
+          document.getElementById("var-foreground").innerHTML = `${random_fg}`;
+          document.getElementById("var-bg-blend").innerHTML = `${random_bg_blend}`;
+          document.getElementById("var-bg-blend").innerHTML = `${random_fg_blend}`;
+          document.getElementById("var-opacity").innerHTML = `${random_opacity}`;
           bg.setAttribute("value", random_bg);
           fg.setAttribute("value", random_fg);
           opacity.value = random_opacity;
@@ -314,6 +435,19 @@
       img_element.setAttribute("data", img_url + (Math.floor(Math.random()*(1000-300+1)+300))); //add a random width param between 1000px and 300px
       document.querySelector('input[type="file"]').value = ""; //reset file upload if user has previous uploaded an image before hitting random
     });
+
+    // Launch modal window
+    const get_css_button = document.getElementById('get-css');
+    get_css_button.addEventListener('click', function(){
+      document.body.classList.toggle('hide-code');
+    });
+     document.getElementById('modal-screen').addEventListener('click', function(){
+       document.body.classList.toggle('hide-code');
+     });
+     document.getElementById('hide-modal-screen').addEventListener('click', function(){
+       document.body.classList.toggle('hide-code');
+     });
+
   </script>
 
 </body>
