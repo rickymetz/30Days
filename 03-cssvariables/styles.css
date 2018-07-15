@@ -332,6 +332,10 @@ input[type="file" i]{
   display: none;
 }
 
+pre{
+  margin-top: 0 !important;
+}
+
 pre>code{
   white-space: pre-wrap !important;
   font-size: 14px;
