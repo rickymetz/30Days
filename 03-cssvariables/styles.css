@@ -1,5 +1,5 @@
 :root{
-  --spacing: 4.5%;
+  --spacing: 20px;
   --blur: 0px;
   --opacity: 1;
   --base: #f7392b;
@@ -218,7 +218,7 @@ input[type="file" i]{
   align-items: center;
   justify-content: flex-start;
 }
-.button-group button, button{
+.button-group button, button, [type=submit]{
   align-self: flex-start;
   display: inline-flex;
   background: black;
@@ -228,6 +228,15 @@ input[type="file" i]{
   flex: 0 0 auto;
   margin: 0 10px 10px 0;
   transition: all .25s ease;
+}
+
+.code-header [type=submit]{
+  margin: 0;
+}
+
+.code-header form{
+  margin-right: auto;
+  margin-left: 1rem;
 }
 
 .button-group button:hover{
@@ -347,7 +356,7 @@ pre{
 pre{
   white-space: pre-wrap !important;
   font-size: 14px;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 .modal-screen{

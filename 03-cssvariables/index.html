@@ -10,7 +10,7 @@
   <div class="container">
     <div id="img-form" class="img-form maintain-ar">
       <div class="img-wrapper">
-        <object id="img-src" data="https://source.unsplash.com/random" type="image/png">
+        <object id="img-src" data="https://picsum.photos/1000?image=874" type="image/png">
           <img src="./img.jpeg">
         </object>
       </div>
@@ -41,7 +41,7 @@
 
           <div class="form-group">
             <label for="spacing">Spacing:</label>
-            <input id="spacing" type="range" name="spacing" min="0" max="20" value="4.5" step="0.1" data-sizing="%">
+            <input id="spacing" type="range" name="spacing" min="0" max="100" value="20" step="1" data-sizing="px">
           </div>
 
           <div class="form-group">
@@ -141,7 +141,7 @@
           <input id="codepen-input" type="hidden" name="data" value="">
 
           <!-- Fancy Pants CodePen Submit Button. -->
-          <input id="codepen-submit" type="image" src="https://s.cdpn.io/3/cp-arrow-right.svg" width="40" height="40" value="Create Pen" class="codepen-mover-button">
+          <input id="codepen-submit" type="submit" value="Open in CodePen" class="codepen-mover-button">
 
         </form>
         <button id="hide-modal-screen" class="button">Close Modal</button>
@@ -198,20 +198,20 @@
 }
 </code>
 &lt;/style&gt;
-<code id="html-code">
-&lt;!-- HTML Markup --&gt;
+<code id="html-code">&lt;!-- HTML Markup --&gt;
 
 &lt;!-- You should think of `img-wrapper` as the image itself. This element is what you should target for sizing/styling. --&gt;
 &lt;div class=&quot;img-wrapper&quot;&gt;
 
-  &lt;!-- This `object` is what contains your image file. You can remove this and replace with a standard `&lt;img/&gt;` tag if you don't want a fallback image. --&gt;
-  &lt;object id=&quot;img-src&quot; data=&quot;https://images.unsplash.com/photo-1530826902532-086e66f7a419?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9&s=1ca7a8770712af1feb5eb869a2c56d08&quot; type=&quot;image/png&quot;&gt;
+  &lt;!-- The `::before` pseudo-element will apear here in the Broweser(DOM) and in web-inspector. --&gt;
 
-    &lt;!-- This `img` is your backup image.You can remove this if you don't want an image fallback --&gt;
+  &lt;!-- This `object` is what contains your image file. --&gt;
+  &lt;!-- You can remove this and replace with a standard "img" tag if you don't want a fallback image. --&gt;
+  &lt;object id=&quot;img-src&quot; data=&quot;<span id="random-img">https://picsum.photos/1000?image=874</span>&quot; type=&quot;image/png&quot;&gt;
+
+    &lt;!-- This `img` is your backup image. You can remove this if you don't want an image fallback --&gt;
     &lt;img src=&quot;./path/to/backup/img.jpeg&quot;&gt;
   &lt;/object&gt;
-
-  &lt;!-- The `::before` pseudo-element will apear here in the Broweser(DOM) and in web-inspector. --&gt;
 &lt;/div&gt;
 </code>
   </pre>
@@ -438,12 +438,15 @@
     premades.forEach( premade => premade.addEventListener('click', handleClickUpdate)); //Attach click listener on each premade buttons that triggers function
 
     // Get new random img
-    const img_url = "https://source.unsplash.com/random/";
+    const img_url = "https://picsum.photos/1000?image=";
     const img_element = document.getElementById('img-src');
+    const codepen_img_element = document.getElementById('random-img');
     const new_img_btn = document.getElementById('new-img-btn');
 
     new_img_btn.addEventListener('click', function(){
-      img_element.setAttribute("data", img_url + (Math.floor(Math.random()*(1000-300+1)+300))); //add a random width param between 1000px and 300px
+      randomImg = img_url + (Math.floor(Math.random()*(1000-2+1)+2)); //add a random width param between 1000px and 300px
+      codepen_img_element.innerHTML = randomImg;
+      img_element.setAttribute("data", randomImg); //add a random width param between 1000px and 300px
       document.querySelector('input[type="file"]').value = ""; //reset file upload if user has previous uploaded an image before hitting random
     });
 
@@ -493,10 +496,11 @@
       // Get the text inside the code tag
       const htmlCode = document.getElementById('html-code').innerHTML;
       const cssCode = document.getElementById('css-code').innerHTML;
-      // Strip html out of the css first
+      // Strip html first
       const strippedCSS = strip(cssCode);
+      const strippedHTML = strip(htmlCode);
       data.css = strippedCSS;
-      data.html = htmlCode;
+      data.html = strippedHTML;
       // Replace Quotes and Set Object as String
       const dataString = setDataString(data);
       // Get Input and Append Data String
