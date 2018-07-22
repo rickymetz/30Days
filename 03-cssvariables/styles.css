@@ -112,7 +112,7 @@ small kbd{
 .maintain-ar .img-wrapper img, .img-wrapper object{
   height: auto;
   max-width: 100%;
-  max-height: calc(100vh - (var(--spacing) * 2));
+  max-height: calc(100vh - 10rem);
   width: unset;
 }
 
