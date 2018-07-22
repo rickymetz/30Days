@@ -10,7 +10,7 @@
   <div class="container">
     <div id="img-form" class="img-form maintain-ar">
       <div class="img-wrapper">
-        <object id="img-src" data="https://picsum.photos/1000?image=874" type="image/png">
+        <object id="img-src" data="https://picsum.photos/1000?image=874" type="image/png" typemustmatch onerror="imgError()">
           <img src="./img.jpeg">
         </object>
       </div>
@@ -444,9 +444,16 @@
 
     new_img_btn.addEventListener('click', function(){
       randomImg = img_url + (Math.floor(Math.random()*(1000-2+1)+2)); //add a random width param between 1000px and 300px
-      codepen_img_element.innerHTML = randomImg;
-      img_element.setAttribute("data", randomImg); //add a random width param between 1000px and 300px
-      document.querySelector('input[type="file"]').value = ""; //reset file upload if user has previous uploaded an image before hitting random
+      const http = new XMLHttpRequest();
+        http.open('HEAD', randomImg, false);
+        http.send();
+      if (http.status != 404){
+        codepen_img_element.innerHTML = randomImg;
+        img_element.setAttribute("data", randomImg); //add a random width param between 1000px and 300px
+        document.querySelector('input[type="file"]').value = ""; //reset file upload if user has previous uploaded an image before hitting random
+      } else{
+         window.location.reload();
+      }
     });
 
     // Launch modal window
