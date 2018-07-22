@@ -12,7 +12,6 @@
 img, object{
   filter: grayscale(100%) contrast(1) blur(var(--blur));
   mix-blend-mode: var(--bg-blend);
-  /* mix-blend-mode: var(--bg-blend); */
   opacity: var(--opacity);
   min-width: 100px;
   min-height: 100px;
@@ -112,7 +111,7 @@ small kbd{
 .maintain-ar .img-wrapper img, .img-wrapper object{
   height: auto;
   max-width: 100%;
-  max-height: calc(100vh - 10rem);
+  max-height: calc(100vh - calc(var(--spacing) * 2));
   width: unset;
 }
 
