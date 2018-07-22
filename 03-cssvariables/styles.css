@@ -20,7 +20,8 @@ img, object{
 .hl{
   color: var(--base);
   letter-spacing: calc(var(--spacing) / 50);
-  margin: 0 calc(var(--spacing) / 100);
+  margin-left: calc(var(--spacing) / 100);
+  margin-right: calc(var(--spacing) / 100);
   filter: blur(var(--blur));
   opacity: var(--opacity);
 }
@@ -41,7 +42,8 @@ html{
 }
 
 h2{
-  margin-bottom: .25rem;
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
   font-weight: lighter;
 }
 
@@ -343,7 +345,7 @@ pre{
   position: relative;
   object-fit: contain;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background: transparent !important;
+  background: #151515 !important;
   padding: 1rem;
   color: #b5b5b5;
 }
